@@ -1,0 +1,20 @@
+What is Shebang in shell script?
+Because shebang specifies the shell interpreter that will run the script. 
+However, you can explicitly specify the shell to run the script, but in this case the shebang line will be ignored. How does shebang work? 
+When you use shebang in the first line of a script, you are telling the shell to run the script using the specified command.
+
+
+
+$? -The exit status of the last command executed.
+ $0 -The filename of the current script. 
+ $# -The number of arguments supplied to a script. 
+ $$ -The process number of the current shell. For shell scripts, this is the process ID under which they are executing.
+ 
+ $@ stands for “all the arguments to the script”. If your shell script was invoked as Then $@ will be “foo bar”. 
+ As a general rule, when you use $@ in a script, you should always quote it. This will preserve the original layout of the arguments even if there are spaces in one or more arguments.
+ 
+ 
+ Vmware. Definition. Cloud computing is used to define a new class of computing that is based on the network technology. 
+ Cloud computing takes place over the internet. It comprises of a collection of integrated and networked hardware, software and internet infrastructure. 
+ Vmware is used in reference to the products of a company named as VMware, Inc. Goals
+

@@ -1,0 +1,35 @@
+ClusterIP. ClusterIP is the most commonly used service type in Kubernetes. ...
+NodePort. Exposes the service on each Node’s IP at a static port (The NodePort). ...
+LoadBalancer. A LoadBalancer service is the standard and easiest way of exposing a service to outside the cluster using a cloud provider’s load balancer.
+
+K8s – ConfigMap The ConfigMap enables us to store non-confidential configuration data.
+ It’s being specific to namespace, we can use it for externalizing environment specific configurations.
+
+
+What is K8s namespace in Kubernetes?
+You can think of a K8s Namespace as a “ virtual cluster” inside your Kubernetes cluster.
+ You can have multiple namespaces inside a single Kubernetes cluster, and they are all logically isolated from each other.
+
+Deplyment vs statefullset?
+Pods deployed by Deployment are identical and interchangeable, created in random order with random hashes in their Pod names. 
+In contrast to that, the Pods deployed by StatefulSet component are NOT identical and deployment is more complex.
+
+What is the difference between StatefulSets and Daemon sets?
+
+Statefulsets is used for Stateful applications, each replica of the pod will have its own state, and will be using its own Volume.
+ DaemonSet is a controller that ensures that the pod runs on all the nodes of the cluster. If a node is added/removed from a cluster, DaemonSet automatically adds/deletes the pod.
+
+What is node affinity and how does it work?
+
+Node affinity allows a pod to specify an affinity (or anti-affinity) towards a group of nodes it can be placed on. The node does not have control over the placement. 
+For example, you could configure a pod to only run on a node with a specific CPU or in a specific availability zone. There are two types of node affinity rules: required and preferred.
+
+The statefulset in Kubernetes is a device that can be used to control and it can able carry one or more pods,
+ the statefulset applications are used and that does not care about which network is using and 
+that also does not want the lasing storage because the statefulset applications may require the web servers,
+ we have also need to know that every pod in the statefulset has ordinal values and steady network ID which can be used for allocation, if a pod has been implemented by statefulset
+ then that comes in an order form which is started from 0(zero) and up to the final pod hence the pod will run steady and they get ready previous to the new pod has been created.
+
+$# Expands to the number of positional parameters in decimal.
+
+$? Expands to the exit status of the most recently executed foreground pipeline.

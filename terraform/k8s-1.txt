@@ -1,0 +1,48 @@
+When you deploy the daemonset, it will create pods equal to the number of nodes. In terms of behavior, 
+it will behave the same as Deployments i.e. all pods will share the same Persistent Volume.
+
+Components of Kubernetes architecture
+Let’s have a look at the purpose and components of master and nodes in the Kubernetes architecture.
+
+Master:
+
+kube-apiserver
+The API server is a component of the Kubernetes control plane that exposes the Kubernetes API. The API server is the front end for the Kubernetes control plane.
+The main implementation of a Kubernetes API server is kube-apiserver. kube-apiserver is designed to scale horizontally—that is, it scales by deploying more instances. You can run several instances of kube-apiserver and balance traffic between those instances.
+etcd
+Consistent and highly-available key value store used as Kubernetes' backing store for all cluster data.
+If your Kubernetes cluster uses etcd as its backing store, make sure you have a back up plan for those data.
+You can find in-depth information about etcd in the official documentation.
+kube-scheduler
+Used for pod scheduling in worker nodes
+Control plane component that watches for newly created Pods with no assigned node, and selects a node for them to run on.
+Factors taken into account for scheduling decisions include: individual and collective resource requirements, hardware/software/policy constraints, affinity and anti-affinity specifications, data locality, inter-workload interference, and deadlines.
+kube-controller-manager
+Control plane component that runs controller processes.
+Logically, each controller is a separate process, but to reduce complexity, they are all compiled into a single binary and run in a single process.
+
+Nodes
+
+Kubelet: Container agents that are responsible for maintaining the set of pods.
+An agent that runs on each node in the cluster. It makes sure that containers are running in a Pod.
+Kube-proxy: Routes traffic coming into a node from the service
+kube-proxy maintains network rules on nodes. These network rules allow network communication to your Pods from network sessions inside or outside of your cluster.
+Now, let’s understand the important commands of Kubernetes.
+Container runtime
+The container runtime is the software that is responsible for running containers.
+
+ Cluster Introspection
+
+Functionality	Command
+For getting version-related information	Kubectl version
+For getting configuration details	Kubectl config g view
+For getting cluster-related information	Kubectl cluster-info
+For getting information about a node	Kubectl describe node<node>
+Debugging Commands
+
+Functionality	Command
+For displaying metrics for a pod	Kubectl top pod
+For displaying metrics for a node	Kubectl top node
+For watching Kubelet logs	Watch -n 2 cat/var/log/kublet.log
+For getting logs from the service for the container	Kubectl logs -f<name>>[-c< $container>]
+For the execution of the command on service by selecting a container	Kubectl exec<service><commands>[-c< $container>]

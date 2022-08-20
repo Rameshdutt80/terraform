@@ -1,0 +1,39 @@
+1. Avoid installing unnecessary packages.
+If you install unnecessary packages in your dockerfile, 
+it will increase the build time and the size of the image. 
+Also, each time you make changes in the dockerfile, you will have to go through all the steps to build that same large image again and again.
+ This creates a cascading downward effect on the performance. 
+ To avoid this, it’s always advised that only include those packages that are of utmost importance and try avoiding installing the same packages again and again. 
+
+You can use a requirements file to install all the packages you require. Use the command below to do so.
+
+RUN pip3 install -r requirements.txt
+2. Chain all RUN commands
+Each RUN command creates a cacheable unit and builds a new intermediate image layer every time. You can avoid this by chaining all your RUN commands into a single RUN command. Also, try to avoid chaining too much cacheable RUN commands because it would then lead to the creation of a large cache and would ultimately lead to cache burst.
+
+RUN apt-get -y install firefox
+RUN apt-get -y install vim
+RUN apt-get -y update
+The above commands can be chained into a single RUN command.
+
+RUN apt-get -y install firefox \
+   && apt-get -y install vim \
+   && apt-get -y update
+   
+3. Use a .dockerignore file
+Similar to .gitignore file, you can specify files and directories inside .dockerignore file which you would like to exclude from your Docker build context.
+ This would result in removing unnecessary files from your Docker Container, reduce the size of the Docker Image, and boost up the build performance.
+
+4. Use the best order of statements
+Include the most frequently changing statements at the end of your dockerfile. 
+The reason behind this is that when you change a statement in your dockerfile, its cache gets invalidated and all the subsequent statements cache will also break. 
+For example, include RUN commands to the top and COPY commands to the bottom. Include the CMD, ENTRYPOINT commands at the end of the dockerfile.
+
+5. Avoid installing unnecessary package dependencies 
+You can use the –no-install-recommends flag while building the image.
+ It will tell the apt package manager to not install redundant dependencies. 
+ Installing unnecessary packages only increases the build time and size of the image which would lead to degraded performance.
+
+To conclude, how not choosing the proper order while writing your dockerfile can increase the build time, size of the image, and decrease the performance of the whole process. We also discussed some of the top tips you can follow to improve the overall build performance, reduce the number of caches that builds an intermediate image layer. 
+ 
+  
